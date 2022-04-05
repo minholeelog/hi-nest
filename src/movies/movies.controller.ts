@@ -6,7 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  Query,
 } from '@nestjs/common';
 import { Movie } from './entities/moive.entity';
 import { MoviesService } from './movies.service';
@@ -36,9 +35,6 @@ export class MoviesController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() data) {
-    return {
-      updatedMovie: id,
-      ...data,
-    };
+    return this.moviesService.update(id, data);
   }
 }
